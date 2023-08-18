@@ -95,7 +95,9 @@ ENV_FILE=${GITHUB_ENV:-.env}
 PATH_FILE=${GITHUB_PATH:-.path}
 
 [ $START_STEP -le 0 ] && . steps/00-environment.sh
+set -a
 source "$ENV_FILE"
+set +a
 
 [ $START_STEP -le 1 ] && . steps/01-install.sh
 PATH="$(tr '\n' ':' < "$PATH_FILE")$PATH"
